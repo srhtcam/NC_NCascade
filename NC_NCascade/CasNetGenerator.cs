@@ -26,7 +26,7 @@ namespace NC_NCascade
         {
             pManager.AddIntegerParameter("n_size", "n_size", "n_size", GH_ParamAccess.item, 3);
             pManager.AddIntegerParameter("case", "case", "case", GH_ParamAccess.item, 0);
-            pManager.AddNumberParameter("Sphere_r", "Sphere_r", "Sphere Radius", GH_ParamAccess.item, 0);
+            pManager.AddNumberParameter("sph_r_inc", "sph_r_inc", "Sphere radius increment or decrement", GH_ParamAccess.item, 0);
         }
 
         /// <summary>
