@@ -23,6 +23,10 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <Compile Remove="NC_NCas_Improved.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <PackageReference Include="Grasshopper" Version="7.21.22208.13001" Condition="$(TargetFramework) == 'net48'" ExcludeAssets="runtime" />
   </ItemGroup>
   
