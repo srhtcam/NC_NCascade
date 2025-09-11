@@ -80,7 +80,7 @@ namespace NC_NCascade
 
             if (!cas_size_find)
             {
-                AddRuntimeMessage(GH_RuntimeMessageLevel.Warning, "Net size does match any n-Cascade size. Please check it. For referance;" +
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Warning, "Net size does not match any n-Cascade size. Please check it. For referance;" +
                     "\n 1-cas net size:14," +
                     "\n 2-cas net size:20," +
                     "\n 3-cas net size:27," +
