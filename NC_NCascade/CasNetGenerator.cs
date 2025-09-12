@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using Rhino.Input.Custom;
+using System.Text;
 
 namespace NC_NCascade
 {
@@ -60,13 +61,13 @@ namespace NC_NCascade
             SetExtNet(cas_size, net_extent, out List<Line> extNetLines);
 
             // Constructing extended cascade net surfaces
-            SetExtendedNCasSurf(cas_size, net_extent, out List<Point3d> tensorpoints, out List<NurbsSurface> surfs, out string bvfile);
+            SetExtendedNCasSurf(cas_size, net_extent, out List<Point3d> tensorpoints, out List<NurbsSurface> surfs, out StringBuilder bvfile);
 
             DA.SetDataList(0, netpts);
             DA.SetDataList(1, extNetLines);
             DA.SetData(2, sphere);
             DA.SetDataList(3, surfs);
-            DA.SetData(4, bvfile);
+            DA.SetData(4, bvfile.ToString());
         }
 
         private void SetCasNet(int cas_size, int caseNo,double sphere_inc, out List<Point3d> netpts, out List<Point3d> net_extent, out Sphere sph)
@@ -709,7 +710,7 @@ namespace NC_NCascade
             return new Point3d(pt + (normal * translatedist));
         }
 
-        private void SetExtendedNCasSurf(int cas_n, List<Point3d> net_extent, out List<Point3d> tensorpoints, out List<NurbsSurface> surfs, out string bvfile)
+        private void SetExtendedNCasSurf(int cas_n, List<Point3d> net_extent, out List<Point3d> tensorpoints, out List<NurbsSurface> surfs, out StringBuilder bvfile)
         {
             int n = (cas_n + 3) + 2;
 
@@ -803,7 +804,8 @@ namespace NC_NCascade
 
             #region writing bv file and surface construction
 
-            bvfile = "Group 1 extend\n";
+            bvfile = new StringBuilder();
+            bvfile.AppendLine("Group 1 extend");
             surfs = new List<NurbsSurface>();
             int nn = (cas_n + 3);
             int nn2 = 2 * nn + 1;
@@ -815,17 +817,17 @@ namespace NC_NCascade
                     tensorpoints[i + nn2], tensorpoints[i + (nn2+1)], tensorpoints[i + (nn2+2)],
                     tensorpoints[i + (2*nn2)], tensorpoints[i + (2*nn2+1)], tensorpoints[i + (2*nn2+2)] }, 3, 3, 2, 2));
 
-                bvfile += "5\n";
-                bvfile += "2 2\n";
-                bvfile += tensorpoints[i].X.ToString() + " " + tensorpoints[i].Y + " " + tensorpoints[i].Z + "\n";
-                bvfile += tensorpoints[i + 1].X + " " + tensorpoints[i + 1].Y + " " + tensorpoints[i + 1].Z + "\n";
-                bvfile += tensorpoints[i + 2].X + " " + tensorpoints[i + 2].Y + " " + tensorpoints[i + 2].Z + "\n";
-                bvfile += tensorpoints[i + nn2].X + " " + tensorpoints[i + nn2].Y + " " + tensorpoints[i + nn2].Z + "\n";
-                bvfile += tensorpoints[i + (nn2 + 1)].X + " " + tensorpoints[i + (nn2 + 1)].Y + " " + tensorpoints[i + (nn2 + 1)].Z + "\n";
-                bvfile += tensorpoints[i + (nn2 + 2)].X + " " + tensorpoints[i + (nn2 + 2)].Y + " " + tensorpoints[i + (nn2 + 2)].Z + "\n";
-                bvfile += tensorpoints[i + (2 * nn2)].X + " " + tensorpoints[i + (2 * nn2)].Y + " " + tensorpoints[i + (2 * nn2)].Z + "\n";
-                bvfile += tensorpoints[i + (2 * nn2 + 1)].X + " " + tensorpoints[i + (2 * nn2 + 1)].Y + " " + tensorpoints[i + (2 * nn2 + 1)].Z + "\n";
-                bvfile += tensorpoints[i + (2 * nn2 + 2)].X + " " + tensorpoints[i + (2 * nn2 + 2)].Y + " " + tensorpoints[i + (2 * nn2 + 2)].Z + "\n";
+                bvfile.AppendLine("5");
+                bvfile.AppendLine("2 2");
+                bvfile.AppendLine($"{tensorpoints[i].X.ToString()} {tensorpoints[i].Y} {tensorpoints[i].Z}");
+                bvfile.AppendLine($"{tensorpoints[i + 1].X} {tensorpoints[i + 1].Y} {tensorpoints[i + 1].Z}");
+                bvfile.AppendLine($"{tensorpoints[i + 2].X} {tensorpoints[i + 2].Y} {tensorpoints[i + 2].Z}");
+                bvfile.AppendLine($"{tensorpoints[i + nn2].X} {tensorpoints[i + nn2].Y} {tensorpoints[i + nn2].Z}");
+                bvfile.AppendLine($"{tensorpoints[i + (nn2 + 1)].X} {tensorpoints[i + (nn2 + 1)].Y} {tensorpoints[i + (nn2 + 1)].Z}");
+                bvfile.AppendLine($"{tensorpoints[i + (nn2 + 2)].X} {tensorpoints[i + (nn2 + 2)].Y} {tensorpoints[i + (nn2 + 2)].Z}");
+                bvfile.AppendLine($"{tensorpoints[i + (2 * nn2)].X} {tensorpoints[i + (2 * nn2)].Y} {tensorpoints[i + (2 * nn2)].Z}");
+                bvfile.AppendLine($"{tensorpoints[i + (2 * nn2 + 1)].X} {tensorpoints[i + (2 * nn2 + 1)].Y} {tensorpoints[i + (2 * nn2 + 1)].Z}");
+                bvfile.AppendLine($"{tensorpoints[i + (2 * nn2 + 2)].X} {tensorpoints[i + (2 * nn2 + 2)].Y} {tensorpoints[i + (2 * nn2 + 2)].Z}");
             }
 
             int nn3 = (5 + (cas_n * 2));
@@ -865,17 +867,17 @@ namespace NC_NCascade
                     tensorpoints[index[i][3]], tensorpoints[index[i][4]], tensorpoints[index[i][5]],
                     tensorpoints[index[i][6]], tensorpoints[index[i][7]], tensorpoints[index[i][8]] }, 3, 3, 2, 2));
 
-                bvfile += "5\n";
-                bvfile += "2 2\n";
-                bvfile += tensorpoints[index[i][0]].X + " " + tensorpoints[index[i][0]].Y + " " + tensorpoints[index[i][0]].Z + "\n";
-                bvfile += tensorpoints[index[i][1]].X + " " + tensorpoints[index[i][1]].Y + " " + tensorpoints[index[i][1]].Z + "\n";
-                bvfile += tensorpoints[index[i][2]].X + " " + tensorpoints[index[i][2]].Y + " " + tensorpoints[index[i][2]].Z + "\n";
-                bvfile += tensorpoints[index[i][3]].X + " " + tensorpoints[index[i][3]].Y + " " + tensorpoints[index[i][3]].Z + "\n";
-                bvfile += tensorpoints[index[i][4]].X + " " + tensorpoints[index[i][4]].Y + " " + tensorpoints[index[i][4]].Z + "\n";
-                bvfile += tensorpoints[index[i][5]].X + " " + tensorpoints[index[i][5]].Y + " " + tensorpoints[index[i][5]].Z + "\n";
-                bvfile += tensorpoints[index[i][6]].X + " " + tensorpoints[index[i][6]].Y + " " + tensorpoints[index[i][6]].Z + "\n";
-                bvfile += tensorpoints[index[i][7]].X + " " + tensorpoints[index[i][7]].Y + " " + tensorpoints[index[i][7]].Z + "\n";
-                bvfile += tensorpoints[index[i][8]].X + " " + tensorpoints[index[i][8]].Y + " " + tensorpoints[index[i][8]].Z + "\n";
+                bvfile.AppendLine("5");
+                bvfile.AppendLine("2 2");
+                bvfile.AppendLine($"{tensorpoints[index[i][0]].X} {tensorpoints[index[i][0]].Y} {tensorpoints[index[i][0]].Z}");
+                bvfile.AppendLine($"{tensorpoints[index[i][1]].X} {tensorpoints[index[i][1]].Y} {tensorpoints[index[i][1]].Z}");
+                bvfile.AppendLine($"{tensorpoints[index[i][2]].X} {tensorpoints[index[i][2]].Y} {tensorpoints[index[i][2]].Z}");
+                bvfile.AppendLine($"{tensorpoints[index[i][3]].X} {tensorpoints[index[i][3]].Y} {tensorpoints[index[i][3]].Z}");
+                bvfile.AppendLine($"{tensorpoints[index[i][4]].X} {tensorpoints[index[i][4]].Y} {tensorpoints[index[i][4]].Z}");
+                bvfile.AppendLine($"{tensorpoints[index[i][5]].X} {tensorpoints[index[i][5]].Y} {tensorpoints[index[i][5]].Z}");
+                bvfile.AppendLine($"{tensorpoints[index[i][6]].X} {tensorpoints[index[i][6]].Y} {tensorpoints[index[i][6]].Z}");
+                bvfile.AppendLine($"{tensorpoints[index[i][7]].X} {tensorpoints[index[i][7]].Y} {tensorpoints[index[i][7]].Z}");
+                bvfile.AppendLine($"{tensorpoints[index[i][8]].X} {tensorpoints[index[i][8]].Y} {tensorpoints[index[i][8]].Z}");
             }
             #endregion
         }

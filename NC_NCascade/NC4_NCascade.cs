@@ -5,6 +5,7 @@ using Rhino.Input.Custom;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms.VisualStyles;
 
 namespace NC_NCascade
@@ -138,7 +139,7 @@ namespace NC_NCascade
 
 
             // Surface construction from calculated points
-            NC_nSurface(outpts, cas_size, out List<NurbsSurface> ncsurfs, out string bvfile, out List<Line> edges);
+            NC_nSurface(outpts, cas_size, out List<NurbsSurface> ncsurfs, out StringBuilder bvfile, out List<Line> edges);
 
             DA.SetDataList(0, DAToList(d_ij));
             DA.SetDataList(1, netlines);
@@ -148,12 +149,13 @@ namespace NC_NCascade
             DA.SetDataList(5, outpts);
             DA.SetDataList(6, edges);
             DA.SetDataList(7, ncsurfs);
-            DA.SetData(8, bvfile);
+            DA.SetData(8, bvfile.ToString());
         }
 
-        private void NC_nSurface(List<Point3d> points,int n, out List<NurbsSurface> surfs, out string bvfile, out List<Line> tensoredges)
+        private void NC_nSurface(List<Point3d> points,int n, out List<NurbsSurface> surfs, out StringBuilder bvfile, out List<Line> tensoredges)
         {
-            bvfile = "Group 2 NC4_"+n.ToString()+"Cas_Cap\n";
+            bvfile = new StringBuilder();
+            bvfile.AppendLine("Group 2 NC4_" +n.ToString()+"Cas_Cap");
             surfs = new List<NurbsSurface>();
 
             int v_size = 3;
@@ -173,23 +175,23 @@ namespace NC_NCascade
                     points[i + 3*vv], points[i + (3*vv + 1)], points[i + (3*vv + 2)],
                     points[i + 4*vv], points[i + (4*vv + 1)], points[i + (4*vv + 2)]}, 5, 3, 4, 2));
 
-                bvfile += "5\n";
-                bvfile += "4 2\n";
-                bvfile += points[i].X + " " + points[i].Y + " " + points[i].Z + "\n";
-                bvfile += points[i + 1].X + " " + points[i + 1].Y + " " + points[i + 1].Z + "\n";
-                bvfile += points[i + 2].X + " " + points[i + 2].Y + " " + points[i + 2].Z + "\n";
-                bvfile += points[i + vv].X + " " + points[i + vv].Y + " " + points[i + vv].Z + "\n";
-                bvfile += points[i + (vv + 1)].X + " " + points[i + (vv + 1)].Y + " " + points[i + (vv + 1)].Z + "\n";
-                bvfile += points[i + (vv + 2)].X + " " + points[i + (vv + 2)].Y + " " + points[i + (vv + 2)].Z + "\n";
-                bvfile += points[i + 2 * vv].X + " " + points[i + 2 * vv].Y + " " + points[i + 2 * vv].Z + "\n";
-                bvfile += points[i + (2 * vv + 1)].X + " " + points[i + (2 * vv + 1)].Y + " " + points[i + (2 * vv + 1)].Z + "\n";
-                bvfile += points[i + (2 * vv + 2)].X + " " + points[i + (2 * vv + 2)].Y + " " + points[i + (2 * vv + 2)].Z + "\n";
-                bvfile += points[i + 3 * vv].X + " " + points[i + 3 * vv].Y + " " + points[i + 3 * vv].Z + "\n";
-                bvfile += points[i + (3 * vv + 1)].X + " " + points[i + (3 * vv + 1)].Y + " " + points[i + (3 * vv + 1)].Z + "\n";
-                bvfile += points[i + (3 * vv + 2)].X + " " + points[i + (3 * vv + 2)].Y + " " + points[i + (3 * vv + 2)].Z + "\n";
-                bvfile += points[i + 4 * vv].X + " " + points[i + 4 * vv].Y + " " + points[i + 4 * vv].Z + "\n";
-                bvfile += points[i + (4 * vv + 1)].X + " " + points[i + (4 * vv + 1)].Y + " " + points[i + (4 * vv + 1)].Z + "\n";
-                bvfile += points[i + (4 * vv + 2)].X + " " + points[i + (4 * vv + 2)].Y + " " + points[i + (4 * vv + 2)].Z + "\n";
+                bvfile.AppendLine("5");
+                bvfile.AppendLine("4 2");
+                bvfile.AppendLine($"{points[i].X} {points[i].Y} {points[i].Z}");
+                bvfile.AppendLine($"{points[i + 1].X} {points[i + 1].Y} {points[i + 1].Z}");
+                bvfile.AppendLine($"{points[i + 2].X} {points[i + 2].Y} {points[i + 2].Z}");
+                bvfile.AppendLine($"{points[i + vv].X} {points[i + vv].Y} {points[i + vv].Z}");
+                bvfile.AppendLine($"{points[i + (vv + 1)].X} {points[i + (vv + 1)].Y} {points[i + (vv + 1)].Z}");
+                bvfile.AppendLine($"{points[i + (vv + 2)].X} {points[i + (vv + 2)].Y} {points[i + (vv + 2)].Z}");
+                bvfile.AppendLine($"{points[i + 2 * vv].X} {points[i + 2 * vv].Y} {points[i + 2 * vv].Z}");
+                bvfile.AppendLine($"{points[i + (2 * vv + 1)].X} {points[i + (2 * vv + 1)].Y} {points[i + (2 * vv + 1)].Z}");
+                bvfile.AppendLine($"{points[i + (2 * vv + 2)].X} {points[i + (2 * vv + 2)].Y} {points[i + (2 * vv + 2)].Z}");
+                bvfile.AppendLine($"{points[i + 3 * vv].X} {points[i + 3 * vv].Y} {points[i + 3 * vv].Z}");
+                bvfile.AppendLine($"{points[i + (3 * vv + 1)].X} {points[i + (3 * vv + 1)].Y} {points[i + (3 * vv + 1)].Z}");
+                bvfile.AppendLine($"{points[i + (3 * vv + 2)].X} {points[i + (3 * vv + 2)].Y} {points[i + (3 * vv + 2)].Z}");
+                bvfile.AppendLine($"{points[i + 4 * vv].X} {points[i + 4 * vv].Y} {points[i + 4 * vv].Z}");
+                bvfile.AppendLine($"{points[i + (4 * vv + 1)].X} {points[i + (4 * vv + 1)].Y} {points[i + (4 * vv + 1)].Z}");
+                bvfile.AppendLine($"{points[i + (4 * vv + 2)].X} {points[i + (4 * vv + 2)].Y} {points[i + (4 * vv + 2)].Z}");
             }
 
             for (int jj = 0; jj < (u_piece - 2); jj++)
@@ -203,20 +205,20 @@ namespace NC_NCascade
                     points[i + 2*vv], points[i + (2*vv + 1)], points[i + (2*vv + 2)],
                     points[i + 3*vv], points[i + (3*vv + 1)], points[i + (3*vv + 2)] }, 4, 3, 3, 2));
 
-                    bvfile += "5\n";
-                    bvfile += "3 2\n";
-                    bvfile += points[i].X + " " + points[i].Y + " " + points[i].Z + "\n";
-                    bvfile += points[i + 1].X + " " + points[i + 1].Y + " " + points[i + 1].Z + "\n";
-                    bvfile += points[i + 2].X + " " + points[i + 2].Y + " " + points[i + 2].Z + "\n";
-                    bvfile += points[i + vv].X + " " + points[i + vv].Y + " " + points[i + vv].Z + "\n";
-                    bvfile += points[i + (vv + 1)].X + " " + points[i + (vv + 1)].Y + " " + points[i + (vv + 1)].Z + "\n";
-                    bvfile += points[i + (vv + 2)].X + " " + points[i + (vv + 2)].Y + " " + points[i + (vv + 2)].Z + "\n";
-                    bvfile += points[i + 2 * vv].X + " " + points[i + 2 * vv].Y + " " + points[i + 2 * vv].Z + "\n";
-                    bvfile += points[i + (2 * vv + 1)].X + " " + points[i + (2 * vv + 1)].Y + " " + points[i + (2 * vv + 1)].Z + "\n";
-                    bvfile += points[i + (2 * vv + 2)].X + " " + points[i + (2 * vv + 2)].Y + " " + points[i + (2 * vv + 2)].Z + "\n";
-                    bvfile += points[i + 3 * vv].X + " " + points[i + 3 * vv].Y + " " + points[i + 3 * vv].Z + "\n";
-                    bvfile += points[i + (3 * vv + 1)].X + " " + points[i + (3 * vv + 1)].Y + " " + points[i + (3 * vv + 1)].Z + "\n";
-                    bvfile += points[i + (3 * vv + 2)].X + " " + points[i + (3 * vv + 2)].Y + " " + points[i + (3 * vv + 2)].Z + "\n";
+                    bvfile.AppendLine("5");
+                    bvfile.AppendLine("3 2");
+                    bvfile.AppendLine($"{points[i].X} {points[i].Y} {points[i].Z}");
+                    bvfile.AppendLine($"{points[i + 1].X} {points[i + 1].Y} {points[i + 1].Z}");
+                    bvfile.AppendLine($"{points[i + 2].X} {points[i + 2].Y} {points[i + 2].Z}");
+                    bvfile.AppendLine($"{points[i + vv].X} {points[i + vv].Y} {points[i + vv].Z}");
+                    bvfile.AppendLine($"{points[i + (vv + 1)].X} {points[i + (vv + 1)].Y} {points[i + (vv + 1)].Z}");
+                    bvfile.AppendLine($"{points[i + (vv + 2)].X} {points[i + (vv + 2)].Y} {points[i + (vv + 2)].Z}");
+                    bvfile.AppendLine($"{points[i + 2 * vv].X} {points[i + 2 * vv].Y} {points[i + 2 * vv].Z}");
+                    bvfile.AppendLine($"{points[i + (2 * vv + 1)].X} {points[i + (2 * vv + 1)].Y} {points[i + (2 * vv + 1)].Z}");
+                    bvfile.AppendLine($"{points[i + (2 * vv + 2)].X} {points[i + (2 * vv + 2)].Y} {points[i + (2 * vv + 2)].Z}");
+                    bvfile.AppendLine($"{points[i + 3 * vv].X} {points[i + 3 * vv].Y} {points[i + 3 * vv].Z}");
+                    bvfile.AppendLine($"{points[i + (3 * vv + 1)].X} {points[i + (3 * vv + 1)].Y} {points[i + (3 * vv + 1)].Z}");
+                    bvfile.AppendLine($"{points[i + (3 * vv + 2)].X} {points[i + (3 * vv + 2)].Y} {points[i + (3 * vv + 2)].Z}");
                 }
             }
 
@@ -231,23 +233,23 @@ namespace NC_NCascade
                     points[i + 3*vv], points[i + (3*vv + 1)], points[i + (3*vv + 2)],
                     points[i + 4*vv], points[i + (4*vv + 1)], points[i + (4*vv + 2)]}, 5, 3, 4, 2));
 
-                bvfile += "5\n";
-                bvfile += "4 2\n";
-                bvfile += points[i].X + " " + points[i].Y + " " + points[i].Z + "\n";
-                bvfile += points[i + 1].X + " " + points[i + 1].Y + " " + points[i + 1].Z + "\n";
-                bvfile += points[i + 2].X + " " + points[i + 2].Y + " " + points[i + 2].Z + "\n";
-                bvfile += points[i + vv].X + " " + points[i + vv].Y + " " + points[i + vv].Z + "\n";
-                bvfile += points[i + (vv + 1)].X + " " + points[i + (vv + 1)].Y + " " + points[i + (vv + 1)].Z + "\n";
-                bvfile += points[i + (vv + 2)].X + " " + points[i + (vv + 2)].Y + " " + points[i + (vv + 2)].Z + "\n";
-                bvfile += points[i + 2 * vv].X + " " + points[i + 2 * vv].Y + " " + points[i + 2 * vv].Z + "\n";
-                bvfile += points[i + (2 * vv + 1)].X + " " + points[i + (2 * vv + 1)].Y + " " + points[i + (2 * vv + 1)].Z + "\n";
-                bvfile += points[i + (2 * vv + 2)].X + " " + points[i + (2 * vv + 2)].Y + " " + points[i + (2 * vv + 2)].Z + "\n";
-                bvfile += points[i + 3 * vv].X + " " + points[i + 3 * vv].Y + " " + points[i + 3 * vv].Z + "\n";
-                bvfile += points[i + (3 * vv + 1)].X + " " + points[i + (3 * vv + 1)].Y + " " + points[i + (3 * vv + 1)].Z + "\n";
-                bvfile += points[i + (3 * vv + 2)].X + " " + points[i + (3 * vv + 2)].Y + " " + points[i + (3 * vv + 2)].Z + "\n";
-                bvfile += points[i + 4 * vv].X + " " + points[i + 4 * vv].Y + " " + points[i + 4 * vv].Z + "\n";
-                bvfile += points[i + (4 * vv + 1)].X + " " + points[i + (4 * vv + 1)].Y + " " + points[i + (4 * vv + 1)].Z + "\n";
-                bvfile += points[i + (4 * vv + 2)].X + " " + points[i + (4 * vv + 2)].Y + " " + points[i + (4 * vv + 2)].Z + "\n";
+                bvfile.AppendLine("5");
+                bvfile.AppendLine("4 2");
+                bvfile.AppendLine($"{points[i].X} {points[i].Y} {points[i].Z}");
+                bvfile.AppendLine($"{points[i + 1].X} {points[i + 1].Y} {points[i + 1].Z}");
+                bvfile.AppendLine($"{points[i + 2].X} {points[i + 2].Y} {points[i + 2].Z}");
+                bvfile.AppendLine($"{points[i + vv].X} {points[i + vv].Y} {points[i + vv].Z}");
+                bvfile.AppendLine($"{points[i + (vv + 1)].X} {points[i + (vv + 1)].Y} {points[i + (vv + 1)].Z}");
+                bvfile.AppendLine($"{points[i + (vv + 2)].X} {points[i + (vv + 2)].Y} {points[i + (vv + 2)].Z}");
+                bvfile.AppendLine($"{points[i + 2 * vv].X} {points[i + 2 * vv].Y} {points[i + 2 * vv].Z}");
+                bvfile.AppendLine($"{points[i + (2 * vv + 1)].X} {points[i + (2 * vv + 1)].Y} {points[i + (2 * vv + 1)].Z}");
+                bvfile.AppendLine($"{points[i + (2 * vv + 2)].X} {points[i + (2 * vv + 2)].Y} {points[i + (2 * vv + 2)].Z}");
+                bvfile.AppendLine($"{points[i + 3 * vv].X} {points[i + 3 * vv].Y} {points[i + 3 * vv].Z}");
+                bvfile.AppendLine($"{points[i + (3 * vv + 1)].X} {points[i + (3 * vv + 1)].Y} {points[i + (3 * vv + 1)].Z}");
+                bvfile.AppendLine($"{points[i + (3 * vv + 2)].X} {points[i + (3 * vv + 2)].Y} {points[i + (3 * vv + 2)].Z}");
+                bvfile.AppendLine($"{points[i + 4 * vv].X} {points[i + 4 * vv].Y} {points[i + 4 * vv].Z}");
+                bvfile.AppendLine($"{points[i + (4 * vv + 1)].X} {points[i + (4 * vv + 1)].Y} {points[i + (4 * vv + 1)].Z}");
+                bvfile.AppendLine($"{points[i + (4 * vv + 2)].X} {points[i + (4 * vv + 2)].Y} {points[i + (4 * vv + 2)].Z}");
             }
 
             tensoredges = new List<Line>();
