@@ -1,5 +1,7 @@
 # Narrowing-Cascade Splines
 
+![NC nets in nature](https://github.com/srhtcam/NC_NCascade/blob/master/resources/images/Bunny.jpg?raw=true)
+
 Quad-dominant meshes are popular with animation designers and can efficiently be
 generated from point clouds. To join primary regions, quad-dominant meshes include
 non-4-valent vertices and non-quad regions. To transition between regions of rich detail
@@ -12,14 +14,15 @@ complicate the construction of the output tensor-product NC spline. The NCn spli
 follows the input mesh, including interior points, and delivers a high-quality curved
 surface of low degree.
 
-[Paper](...)
 
-[Cite](...)
+[Paper](...)   ,    [Cite](...)
+
+
 
 This code is designed to run within Grasshopper for Rhinoceros 3D to visualize surface outputs, 
 meshes, and generate [BezierView](https://www.cise.ufl.edu/research/SurfLab/bview/) files (.bv) for use in this paper.
 
-## Installation without Compiling
+## <ins>Installation without Compiling</ins>
 To begin using Narrowing-Cascade Splines, first load the pre-compiled Grasshopper libraries, 
 after ensuring Rhinoceros 3D (Rhino 8) is installed on your system. These libraries enable 
 you to easily experiment with and visualize splines within the Rhino environment without needing 
@@ -33,6 +36,8 @@ the spline's quality and behavior.
 Feel free to experiment with different control point configurations to deepen your understanding 
 of the Narrowing-Cascade process and its impact on the generated surfaces.
 
+---
+
 ### Downloading the Rhinoceros3D Sofware
 This code is designed to run within Grasshopper for Rhinoceros 3D to visualize surface 
 outputs, meshes, and generate Bezier view files (.bv files).
@@ -43,6 +48,8 @@ for new users. This trial allows you to fully explore and test the software's fe
 before committing to a purchase.
 
 [Download Rhino 8](https://www.rhino3d.com/download/)
+
+---
 
 ### Pre-compiled Grasshopper Files (.gha and .gh)
 
@@ -59,16 +66,19 @@ After downloading, you need to unblock the NC_NCascade.gha file. Right-click the
 ---
 
 To install the library file in Rhino 8, first open Rhino 8 and launch Grasshopper as shown in the image below, or type the **Grasshopper** command directly into the Rhino command line.
+
 ![Launch Grasshoper](https://github.com/srhtcam/NC_NCascade/blob/master/resources/images/Picture1.png?raw=true)
 
 ---
 
 Inside Grasshopper, go to **File > Special Folders > Components Folder** to open the Component library file.
+
 ![Component Folder](https://github.com/srhtcam/NC_NCascade/blob/master/resources/images/Picture2.png?raw=true)
 
 ---
 
 Copy the downloaded **NC_NCascade.gha** file into this folder. Please make sure to check the file and **unblock** it if necessary.
+
 ![Copy .gha file](https://github.com/srhtcam/NC_NCascade/blob/master/resources/images/Picture3.png?raw=true)
 
 
@@ -81,6 +91,7 @@ Copy the downloaded **NC_NCascade.gha** file into this folder. Please make sure 
 ---
 
 Restart Rhino 8 and launch Grasshopper. Then, drag the **test.gh** file onto the Grasshopper canvas to open it.
+
 ![Open the test.gh file](https://github.com/srhtcam/NC_NCascade/blob/master/resources/images/Picture5.png?raw=true)
 
 ---
@@ -90,7 +101,9 @@ The red-colored surface in the Rhino 8 screen represents the Grasshopper surface
 or any other Rhino 8 command, you first need to **Bake** the Grasshopper surface to convert it into a Rhino surface.
 
 To do this, **right-click** on the **Bake this** object, select the **Bake** command, and then click **OK** in the dialog that appears.
+
 ![Bake](https://github.com/srhtcam/NC_NCascade/blob/master/resources/images/Picture6.png?raw=true)
+
 >Note: You can use the Bake command for all geometric objects (Geo) individually.
 >The Bake this component specifically contains the outer extended surface and cap surface.
 
@@ -98,6 +111,7 @@ To do this, **right-click** on the **Bake this** object, select the **Bake** com
 
 The **Zebra Strip Analysis** can be found under the Surface section or called directly using the command line. 
 The black surface displayed over the red-colored surface represents the Rhino 8 surface generated after using the Bake command. 
+
 ![Zebra Strip Location](https://github.com/srhtcam/NC_NCascade/blob/master/resources/images/Picture7.png?raw=true)
 
 ---
@@ -106,6 +120,7 @@ After clicking the Zebra Strip Analysis command and selecting the black surface
 (*you will notice that the red-colored surface cannot be selected*), the zebra stripes will be generated. 
 To hide the red-colored surface, **right-click** on it and select **Preview**.
 To show it again, right-click on the surface and select Preview once more.
+
 ![Bake](https://github.com/srhtcam/NC_NCascade/blob/master/resources/images/Picture8.png?raw=true)
 
 ---
@@ -127,9 +142,10 @@ The **test.gh** file is briefly explained below:
 To view the results, connect the *..._pts* files to the *NC4_NCascade* object.
 
 4. Clicking the button generates the .bv file, which is saved in the C:/Download directory and named surface.bv for the current surface.
+
 ![Bake](https://github.com/srhtcam/NC_NCascade/blob/master/resources/images/Picture9.png?raw=true)
 
-## Installation with Compiling
+## <ins>Installation with Compiling</ins>
 
 Please install the necessary tools for Rhinoceros Scripting on Windows by following the tutorial steps below.
 
