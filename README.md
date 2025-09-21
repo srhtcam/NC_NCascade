@@ -77,7 +77,7 @@ Inside Grasshopper, go to **File > Special Folders > Components Folder** to open
 
 ---
 
-Copy the downloaded **NC_NCascade.gha** file into this folder. Please make sure to check the file and **unblock** it if necessary.
+Copy the downloaded NC_NCascade.gha file into the opened *component folder*. Ensure the file is checked and unblocked if needed.
 
 ![Copy .gha file](https://github.com/srhtcam/NC_NCascade/blob/master/resources/images/Picture3.png?raw=true)
 
