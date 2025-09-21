@@ -138,7 +138,7 @@ The **test.gh** file is briefly explained below:
     -  Case: 22 -> Figure 18(e)
     -  Case: 13 -> Figure 18(f)
 
-3. Displays mesh examples from Figure 2 along with their corresponding Narrowing-Cascade nets.
+3. Displays mesh examples from Figure 2 (in the paper) along with their corresponding Narrowing-Cascade nets.
 To view the results, connect the *..._pts* files to the *NC4_NCascade* object.
 
 4. Clicking the button generates the .bv file, which is saved in the *C:\Users\ ...\Downloads* directory and named surface.bv for the current surface.
