@@ -15,7 +15,7 @@ follows the input mesh, including interior points, and delivers a high-quality c
 surface of low degree.
 
 
-[Paper](...)   ,    [Cite](...)
+[Paper](https://github.com/srhtcam/NC_NCascade/raw/master/resources/ssrn-5346095.pdf)   ,    [Cite](...)
 
 
 
@@ -124,7 +124,11 @@ To show it again, right-click on the surface and select Preview once more.
 ![Bake](https://github.com/srhtcam/NC_NCascade/blob/master/resources/images/Picture8.png?raw=true)
 
 ---
+
 The **test.gh** file is briefly explained below:
+
+![Bake](https://github.com/srhtcam/NC_NCascade/blob/master/resources/images/Picture9.png?raw=true)
+
 
 1. Control Net Size: Adjusts the size of the control net.
 
@@ -141,9 +145,12 @@ The **test.gh** file is briefly explained below:
 3. Displays mesh examples from Figure 2 (in the paper) along with their corresponding Narrowing-Cascade nets.
 To view the results, connect the *..._pts* files to the *NC4_NCascade* object.
 
+<img src="https://github.com/srhtcam/NC_NCascade/blob/master/resources/images/Picture10.png?raw=true" width="900"/>
+
+
 4. Clicking the button generates the .bv file, which is saved in the *C:\Users\ ...\Downloads* directory and named surface.bv for the current surface.
 
-![Bake](https://github.com/srhtcam/NC_NCascade/blob/master/resources/images/Picture9.png?raw=true)
+
 
 ## <ins>Installation with Compiling</ins>
 
