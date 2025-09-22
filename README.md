@@ -15,7 +15,7 @@ follows the input mesh, including interior points, and delivers a high-quality c
 surface of low degree.
 
 
-[Paper](https://github.com/srhtcam/NC_NCascade/raw/master/resources/ssrn-5346095.pdf)   ,    [Cite](...)
+[Paper](https://github.com/srhtcam/NC_NCascade/raw/master/resources/25nCascade_Clean.pdf)   ,    [Cite](https://doi.org/10.1016/j.cag.2025.104441)
 
 
 
