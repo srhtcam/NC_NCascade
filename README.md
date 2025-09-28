@@ -133,6 +133,7 @@ The **test.gh** file is briefly explained below:
 1. Control Net Size: Adjusts the size of the control net.
 
 2. Modifies the deformation of nets.
+	-  Case: 0  -> on spherical surface (without deformation)
     -  Case: 6  -> Figure 16(c)
     -  Case: 9  -> Figure 16(e)
     -  Case: 21 -> Figure 16(g)
