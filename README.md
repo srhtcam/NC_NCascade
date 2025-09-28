@@ -105,7 +105,7 @@ To do this, **right-click** on the **Bake this** object, select the **Bake** com
 ![Bake](https://github.com/srhtcam/NC_NCascade/blob/master/resources/images/Picture6.png?raw=true)
 
 >Note: You can use the Bake command for all geometric objects (Geo) individually.
->The *'Bake this'* component specifically contains the outer extended surface and cap surface.
+>The *'Bake this'* component specifically contains the outer extended surfaces and cap surfaces.
 
 ---
 
