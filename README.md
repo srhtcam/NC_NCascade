@@ -96,7 +96,7 @@ Restart Rhino 8 and launch Grasshopper. Then, drag the **test.gh** file onto the
 
 ---
 
-The **test.gh** file generates the default <ins>n=4</ins> Narrowing-Cascade Splines (Figure 10(b) in paper) inside Grasshopper. 
+The **test.gh** file generates the default <ins>n=4</ins> Narrowing-Cascade Splines (Figure 10(b) in [paper](https://github.com/srhtcam/NC_NCascade/raw/master/resources/25nCascade_Clean.pdf)) inside Grasshopper. 
 The red-colored surface in the Rhino 8 screen represents the Grasshopper surface. To use commands like Zebra Strip Analysis 
 or any other Rhino 8 command, you first need to **Bake** the Grasshopper surface to convert it into a Rhino surface.
 
