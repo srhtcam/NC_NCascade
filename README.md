@@ -22,7 +22,48 @@ surface of low degree.
 This code is designed to run within Grasshopper for Rhinoceros 3D to visualize surface outputs, 
 meshes, and generate [BezierView](https://www.cise.ufl.edu/research/SurfLab/bview/) files (.bv) for use in this paper.
 
-## <ins>Installation without Compiling</ins>
+Additionally, a MATLAB script that generates NC4 surface patches for n = 4 narrowing cascades is included for users who prefer not to use Rhinoceros 3D.
+
+## <ins>MATLAB Script for n = 4 Narrowing Cascade </ins>
+This MATLAB script generates NC4 surface patches for "**n = 4**" narrowing-cascade size from a given set of control points, without the need for Rhino 3D or Grasshopper.
+For the case n = 4, there are a total of 52 control points, as shown in the figure.
+
+<p align="center">
+<img src="https://github.com/srhtcam/NC_NCascade/blob/master/resources/images/txt_pts_order.jpg?raw=true" width="300"/>
+</p>
+
+The control points should be written line by line to the .txt file, following a horizontal sequence from either the left-bottom or 
+right-bottom corner upward, with no spaces between the x, y, and z coordinates, as illustrated below:
+
+ <pre>
+left-bottom to up;         right-bottom to up;
+ 1x,1y,1z                  8x,8y,8z
+ 2x,2y,2z                  7x,7y,7z
+ 3x,3y,3z                  6x,6y,6z
+ 4x,4y,4z                  5x,5y,5z
+ .                         .
+ .                         .
+ .                         .
+ 51x,51y,51z			   49x,49y,49z
+ 52x,52y,52z			   48x,48y,48z
+</pre>
+
+
+When the script (*NC4_SurfPatch.m*) is executed, it prompts the user to select a *.txt* file containing the control points, and then outputs a corresponding *.bv* file in the same directory.
+This .bv file can be freely visualized using [BezierView](https://www.cise.ufl.edu/research/SurfLab/bview/). 
+The control points used in the paper’s figures and the MATLAB script can be downloaded from the link below:
+
+[Download matlab.zip](https://github.com/srhtcam/NC_NCascade/raw/master/resources/matlab.zip)
+
+In the figure below, the generated surface patch (from Fig10_b_NC4.txt) and the highlight lines can be visualized using [BezierView WebGL](https://www.cise.ufl.edu/research/SurfLab/bview/webgl/).
+The resulting .bv file (Fig10_b_NC4.bv) includes both the extended net (yellow) and the NC4 surface patch (green).
+
+<p align="center">
+<img src="https://github.com/srhtcam/NC_NCascade/blob/master/resources/images/bv_hld.png?raw=true" width="900"/>
+</p>
+
+
+## <ins>Installation without Compiling (Rhinoceros 3D)</ins>
 To begin using Narrowing-Cascade Splines, first load the pre-compiled Grasshopper libraries, 
 after ensuring Rhinoceros 3D (Rhino 8) is installed on your system. These libraries enable 
 you to easily experiment with and visualize splines within the Rhino environment without needing 
@@ -146,14 +187,15 @@ The **test.gh** file is briefly explained below:
 3. Displays mesh examples from Figure 2 (in the paper) along with their corresponding Narrowing-Cascade nets.
 To view the results, connect the *..._pts* files to the *NC4_NCascade* object.
 
+<p align="center">
 <img src="https://github.com/srhtcam/NC_NCascade/blob/master/resources/images/Picture10.png?raw=true" width="900"/>
-
+</p> 
 
 4. Clicking the button generates the .bv file, which is saved in the *C:\Users\ ...\Downloads* directory and named surface.bv for the current surface.
 
 
 
-## <ins>Installation with Compiling</ins>
+## <ins>Installation with Compiling (Rhinoceros 3D) </ins>
 
 Please install the necessary tools for Rhinoceros Scripting on Windows by following the tutorial steps below.
 
