@@ -53,7 +53,9 @@ When the script (*NC4_SurfPatch.m*) is executed, it prompts the user to select a
 This .bv file can be freely visualized using [BezierView](https://www.cise.ufl.edu/research/SurfLab/bview/). 
 The control points used in the paper’s figures and the MATLAB script can be downloaded from the link below:
 
-[MATLAB Script](https://github.com/srhtcam/NC_NCascade/raw/master/resources/matlab/NC4_SurfPatch.m)
+
+
+[MATLAB Script](https://github.com/srhtcam/NC_NCascade/blob/master/resources/matlab/NC4_SurfPatch.m)
 
 [Input Control Points for Script](https://github.com/srhtcam/NC_NCascade/tree/master/resources/matlab/examples)
 
