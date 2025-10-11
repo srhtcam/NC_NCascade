@@ -53,7 +53,11 @@ When the script (*NC4_SurfPatch.m*) is executed, it prompts the user to select a
 This .bv file can be freely visualized using [BezierView](https://www.cise.ufl.edu/research/SurfLab/bview/). 
 The control points used in the paper’s figures and the MATLAB script can be downloaded from the link below:
 
-[Download matlab.zip](https://github.com/srhtcam/NC_NCascade/raw/master/resources/matlab.zip)
+[MATLAB Script](https://github.com/srhtcam/NC_NCascade/raw/master/resources/NC4_SurfPatch.m)
+
+[Input Control Points for Script](https://github.com/srhtcam/NC_NCascade/tree/master/resources/matlab/examples)
+
+
 
 In the figure below, the generated surface patch (from Fig10_b_NC4.txt) and the highlight lines can be visualized using [BezierView WebGL](https://www.cise.ufl.edu/research/SurfLab/bview/webgl/).
 The resulting .bv file (Fig10_b_NC4.bv) includes both the extended net (yellow) and the NC4 surface patch (green).
